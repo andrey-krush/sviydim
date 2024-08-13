@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="MobileOptimized" content="width">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no ">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="address=no">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <title>index-search</title>
+    <link rel="stylesheet" href="./styles/fancybox.css">
+    <link rel="stylesheet" href="./styles/swiper.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/base/jquery-ui.min.css">
+    <link rel="stylesheet" href="./styles/app.css">
+  </head>
+  <body>
+    <div class="app app_no_js index">
+      <svg style="position:absolute;top:0;left:0;width:1px;height:1px;visibility:hidden;opacity:0;" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <symbol fill="none" viewBox="0 0 30 42" id="app__arrow-slider-main" xmlns="http://www.w3.org/2000/svg">
+          <path fill="#fff" d="M29.5.5v41H.5V.5z" />
+          <path d="M22 20.705H8M15 28l-7-7.295 7-7.296" stroke="#465558" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          <path stroke="#E3DDDD" d="M29.5.5v41H.5V.5z" />
+        </symbol>
+        <symbol fill="none" viewBox="0 0 20 20" id="app__arrow-up" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9.727 4.458v11.084M15.269 10l-5.542 5.542L4.185 10" stroke="#465558" stroke-linecap="round" stroke-linejoin="round" />
+        </symbol>
+        <symbol fill="none" viewBox="0 0 28 23" id="app__burger-header" xmlns="http://www.w3.org/2000/svg">
+          <g clip-path="url(#cclip0_1847_8328)" stroke="#465558" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M28.25 8.333H-.25M28.25 2H-.25M28.25 14.667H-.25M28.25 21H-.25" />
+          </g>
+          <defs>
+            <clipPath id="cclip0_1847_8328">
+              <path fill="#fff" transform="translate(0 .5)" d="M0 0h28v22H0z" />
+            </clipPath>
+          </defs>
+        </symbol>
+        <symbol fill="none" viewBox="0 0 17 10" id="app__drop-arrow" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15.6 1.5l-7 7-7-7" stroke="#609F90" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </symbol>
+        <symbol fill="none" viewBox="0 0 30 16" id="app__filter" xmlns="http://www.w3.org/2000/svg">
+          <path d="M22.63 7.235H7.111M26.509 2.294H3.233M19.396 12.794h-7.758" stroke="silver" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </symbol>
+        <symbol fill="none" viewBox="0 0 10 20" id="app__icon-facebook" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6.646 20v-8.746h2.721l.506-3.593H6.646V5.288c0-1.017.443-1.966 1.898-1.966H10V.272S8.67 0 7.405 0c-2.658 0-4.43 1.763-4.43 4.881v2.78H0v3.593h2.975V20h3.67z" fill="#465558" />
+        </symbol>
+        <symbol fill="none" viewBox="0 0 34 34" id="app__icon-home" xmlns="http://www.w3.org/2000/svg">
+          <path d="M33 17v16H1V17L17 1l8 8h8v8z" fill="#fff" />
+          <path d="M33 17v16H20.5M33 17H1m32 0V9h-8m8 8l-8-8M1 17L17 1l8 8M1 17v16h12m0 0V21.5h7.5V33M13 33h7.5" stroke="#609F90" />
+          <path stroke="#609F90" d="M5.5 26.5h3v3h-3zM5.5 20.5h3v3h-3zM25.5 20.5h3v3h-3zM25.5 26.5h3v3h-3z" />
+        </symbol>
+        <symbol fill="none" viewBox="0 0 18 22" id="app__icon-tik" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18 9.066h-.537a5.697 5.697 0 01-4.702-2.45v8.316c0 3.417-2.888 6.124-6.38 6.124C2.888 21.056 0 18.284 0 14.932s2.888-6.124 6.38-6.124h.404v3.03c-.135 0-.27-.064-.403-.064-1.814 0-3.291 1.418-3.291 3.158s1.477 3.159 3.29 3.159c1.814 0 3.359-1.354 3.359-3.095V.944h3.022c.269 2.579 2.485 4.641 5.172 4.835L18 9.066z" fill="#465558" />
+        </symbol>
+        <symbol fill="none" viewBox="0 0 72 72" id="app__icon-ukr" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="1" width="70" height="70" rx="14" fill="#465558" />
+          <path d="M55.444 39.57c-1.424-1.94-2.578-2.455-7.501-2.136-.633.043-1.228-.22-1.823-.798-3.156-3.057-5.151-13.935-4.758-25.88h-.154L40.453 10c-.295.295-5.942 6.022-6.998 11.234-.007-.013-.013-.025-.018-.043l-.007.006c-.325-.62-.473-.565-.804-.435a.619.619 0 00-.362.368c-.743.657-2.744 2.91-1.805 7.446a.622.622 0 00-.626.16c0 .006-.013.017-.038.042-2.842-2.333-5.34-6.12-6.593-10.013l-.835-3.517a.622.622 0 00-.583-.473.603.603 0 00-.602.442c-.11.375-2.154 7.582-.718 12.376-.533-.343-.637-.226-.864.038-.007.012-.178.214-.141.485-.313.89-.94 3.646 1.854 6.955a.608.608 0 00-.411.424c-.012.037-.86 3.413 2.86 5.801a.465.465 0 01-.098.019.627.627 0 00-.57.33c-.13.246-.08.541.122.731.141.135 3.205 2.965 7.514 3.07-.835.552-2.24 1.296-4.598 2.154-5.242 1.904-7.655 3.524-8.073 5.409-.214.988.154 1.958 1.1 2.897.288.289.668.443 1.08.443h.074a1.77 1.77 0 00.307-.05c.134.326.343.608.62.841.766.639 1.952.81 3.02.81.54 0 1.05-.042 1.461-.098-.037.314-.043.615.024.903.228.92.989 1.541 2.266 1.835.349.08.692.123 1.018.123 4.518-.006 7.005-7.195 7.686-9.503 7.741 3.063 12.057-2.621 14.666-6.06l.436-.576c.669-.872 1.375-1.32 2.087-1.332 1.104.006 2.002 1.025 2.007 1.037a.626.626 0 00.706.178.615.615 0 00.38-.626c-.011-.098-.239-2.474-1.553-4.26zm-1.553 2.444c-1.104.018-2.13.626-3.045 1.81l-.448.584c-2.615 3.45-6.575 8.662-13.844 5.402a.606.606 0 00-.515.013.581.581 0 00-.326.4c-.03.104-2.628 10.288-7.428 9.17-1.184-.27-1.307-.766-1.345-.933-.368-1.51 2.523-4.64 4.427-6.261l-.792-.934c-.424.362-3.345 2.892-4.457 5.286-1.056.19-3.21.38-4.094-.356a1.026 1.026 0 01-.356-.644c2.29-2.585 6.397-4.604 6.433-4.629l-.534-1.099c-.19.086-4.628 2.266-7.04 5.163a.38.38 0 01-.271.134.286.286 0 01-.233-.085c-.639-.633-.884-1.203-.762-1.762.449-2.031 5.599-3.904 7.294-4.518 3.812-1.387 5.383-2.547 6.028-3.217a.81.81 0 00-.601-1.363c-.031 0-.068 0-.099.006-3.088.313-5.66-1.11-6.949-2.013.16-.068.338-.154.522-.246a.605.605 0 00.338-.552.619.619 0 00-.35-.552c-2.744-1.283-3.334-3.045-3.413-4.101.497.246 1.148.503 1.946.786a.62.62 0 00.742-.288.618.618 0 00-.165-.78c-4.18-3.205-4.322-6.029-4.089-7.323.356.288.884.718 1.682 1.363a.614.614 0 00.847-.068.608.608 0 00-.042-.853c-2.499-2.351-1.83-8.134-1.173-11.48l.245 1.026c1.35 4.199 4.052 8.256 7.115 10.73-.546 1.167-1 3.205.442 5.802-.11-.025-.165-.05-.19-.056a.612.612 0 00-.89.755c.092.228 2.309 5.586 7.57 7.477l.417-1.154c-3.376-1.209-5.408-4.113-6.304-5.702.178.012.374.024.583.036a.605.605 0 00.565-.326.623.623 0 00-.043-.65c-1.946-2.67-1.541-4.648-1.056-5.66.337.485.829 1.086 1.443 1.774a.625.625 0 00.791.105.62.62 0 00.228-.768c-2.296-5.211-.903-7.93-.025-8.993.19.448.473 1.135.896 2.185a.614.614 0 001.154-.417c-1.24-3.805 3.15-9.478 5.379-12.037-.203 11.841 1.872 22.124 5.162 25.316.854.823 1.774 1.21 2.763 1.148 4.806-.313 5.408.24 6.433 1.634.479.657.792 1.43.995 2.1a3.32 3.32 0 00-1.56-.385z" fill="#1E78FF" />
+          <path d="M55.45 42.395a3.361 3.361 0 00-1.559-.38c-1.104.017-2.13.625-3.045 1.81l-.448.583c-2.615 3.45-6.575 8.662-13.844 5.402a.606.606 0 00-.515.013.58.58 0 00-.326.4c-.03.104-2.628 10.288-7.428 9.17-1.184-.27-1.307-.766-1.345-.933-.368-1.51 2.523-4.64 4.427-6.261l-.792-.934c-.424.362-3.345 2.892-4.457 5.286-1.056.19-3.21.38-4.094-.356a1.026 1.026 0 01-.356-.644c2.29-2.585 6.397-4.604 6.433-4.629l-.534-1.099c-.19.086-4.628 2.266-7.041 5.163a.38.38 0 01-.27.134.286.286 0 01-.233-.085c-.639-.633-.884-1.203-.762-1.762.449-2.032 5.599-3.904 7.294-4.518 3.812-1.388 5.383-2.547 6.028-3.217a.81.81 0 00-.7-1.357c-3.088.313-5.66-1.11-6.949-2.013.16-.068.338-.154.522-.246a.605.605 0 00.338-.552.619.619 0 00-.35-.552c-2.744-1.283-3.334-3.045-3.413-4.101.497.246 1.148.503 1.946.786a.62.62 0 00.742-.288.618.618 0 00-.165-.78c-4.18-3.205-4.322-6.029-4.089-7.323.356.288.884.718 1.682 1.363a.614.614 0 00.847-.068.608.608 0 00-.043-.853c-2.498-2.351-1.83-8.134-1.172-11.48l.245 1.026c1.35 4.199 4.052 8.256 7.115 10.73-.546 1.167-1 3.205.442 5.801-.11-.024-.165-.049-.19-.055a.612.612 0 00-.89.755c.092.227 2.309 5.586 7.57 7.477l.417-1.154c-3.377-1.209-5.408-4.113-6.304-5.702.178.012.374.024.583.036a.606.606 0 00.565-.326.623.623 0 00-.043-.65c-1.946-2.67-1.541-4.648-1.056-5.66.337.485.829 1.086 1.443 1.774a.625.625 0 00.791.105.62.62 0 00.228-.768c-2.296-5.211-.903-7.93-.025-8.993.19.448.473 1.135.896 2.185a.614.614 0 001.154-.417C33.48 20.433 37.87 14.76 40.1 12.2c-.203 11.842 1.872 22.125 5.162 25.317.854.823 1.774 1.21 2.762 1.148 4.807-.313 5.409.24 6.434 1.634.478.653.79 1.427.994 2.096z" fill="#FAFAFA" />
+          <rect x="1" y="1" width="70" height="70" rx="14" stroke="#1E78FF" stroke-width="2" />
+        </symbol>
+        <symbol fill="none" viewBox="0 0 22 22" id="app__icon_instagram" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 16V6a5 5 0 015-5h10a5 5 0 015 5v10a5 5 0 01-5 5H6a5 5 0 01-5-5z" fill="#465558" stroke="#465558" />
+          <circle cx="11" cy="11" r="4" stroke="#fff" stroke-width="2" />
+          <circle cx="18" cy="5" r="1" fill="#fff" />
+        </symbol>
+        <symbol fill="none" viewBox="0 0 17 20" id="app__icon_profile" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 19v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M8.5 9a4 4 0 100-8 4 4 0 000 8z" stroke="#465558" stroke-linecap="round" stroke-linejoin="round" />
+        </symbol>
+        <symbol fill="none" viewBox="0 0 16 17" id="app__icon_search" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M1 7.464a6.167 6.167 0 1110.588 4.299.5.5 0 00-.122.122A6.167 6.167 0 011 7.464zm10.868 5.409a7.167 7.167 0 11.707-.707l3.279 3.278a.5.5 0 01-.708.707l-3.278-3.278z" fill="#465558" />
+        </symbol>
+        <symbol fill="none" viewBox="0 0 77 78" id="app__logo" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16.882 24.454l45.77.317-12.58-13.028h12.58v35.735h-45.77V24.454z" fill="#fff" />
+          <path d="M62.652 24.771l-45.77-.317v23.024h45.77V24.771zm0 0V11.743h-12.58l12.58 13.028z" stroke="#000" />
+          <path d="M39.502 1L16.817 24.348l45.835.435L39.502 1z" fill="#fff" />
+          <path d="M16.817 24.348L16.46 24a.5.5 0 00.354.848l.004-.5zM39.502 1l.358-.349-.358-.368-.359.369.359.348zm23.15 23.783l-.005.5a.5.5 0 00.363-.849l-.358.35zm-45.476-.086L39.861 1.348l-.718-.696L16.46 24l.717.697zM39.144 1.349l23.15 23.783.716-.698L39.86.651l-.716.698zm-22.331 23.5l45.834.434.01-1-45.835-.434-.01 1z" fill="#000" />
+          <path d="M39.183 24.494L16.98 47.418M39.734 24.494l22.659 22.85M39.5 1.304V47.577" stroke="#000" stroke-dasharray="4 4" />
+          <path d="M1.216 69.598c0 2.416 1.312 3.728 3.728 3.728 2.24 0 3.44-1.136 3.44-3.232h-.912c0 1.552-.88 2.4-2.528 2.4-1.824 0-2.816-1.024-2.816-2.896v-1.6c0-1.888.992-2.896 2.816-2.896 1.648 0 2.528.832 2.528 2.4h.912c0-2.112-1.2-3.232-3.44-3.232-2.416 0-3.728 1.296-3.728 3.728v1.6zm9.754-5.2v8.8h4.192c1.776 0 2.72-.832 2.72-2.384 0-1.152-.512-1.888-1.488-2.176.656-.336 1.008-.992 1.008-1.936 0-1.504-.88-2.304-2.528-2.304H10.97zm.912 4.72h3.28c1.168 0 1.808.576 1.808 1.632s-.64 1.616-1.808 1.616h-3.28v-3.248zm2.976-3.888c1.056 0 1.632.544 1.632 1.536 0 1.008-.576 1.552-1.632 1.552h-2.976V65.23h2.976zm5.593-.032h3.152v7.2h-3.152v.8h7.088v-.8h-3.008v-8h-4.08v.8zm3.36-2.848c.465 0 .736-.256.736-.752 0-.48-.271-.752-.736-.752-.48 0-.752.272-.752.752 0 .496.272.752.752.752zm6.202 10.848h.912v-1.296l5.312-5.296v6.592h.912v-8.8h-.912v.976l-5.312 5.296v-6.272h-.912v8.8zm1.232-12.048c0 1.504.816 2.32 2.336 2.32 1.536 0 2.352-.816 2.352-2.32h-.784c0 1.056-.544 1.632-1.568 1.632-1.008 0-1.568-.576-1.568-1.632h-.768zm18.212 14.448v-2.4h6.624v2.4h.848v-3.216h-1.024v-7.984h-3.248l-3.024 3.008v4.976h-1.024v3.216h.848zm1.056-3.216v-4.608l2.56-2.576h1.904v7.184h-4.464zm8.314-7.184h3.151v7.2h-3.151v.8h7.088v-.8h-3.009v-8h-4.08v.8zm3.36-2.848c.464 0 .736-.256.736-.752 0-.48-.273-.752-.736-.752-.48 0-.752.272-.752.752 0 .496.271.752.752.752zm6.041 10.848h.912v-6.08l2.64 2.624h.368l2.624-2.624v6.08h.912v-8.8h-.912v1.488l-2.816 2.8-2.816-2.8v-1.488h-.912v8.8z" fill="#000" />
+        </symbol>
+        <symbol fill="none" viewBox="0 0 77 80" id="app__logo-footer" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15.882 24.454l45.77.317-12.58-13.028h12.58v35.735h-45.77V24.454z" fill="#fff" />
+          <path d="M61.652 24.771l-45.77-.317v23.024h45.77V24.771zm0 0V11.743h-12.58l12.58 13.028z" stroke="#000" />
+          <path d="M38.502 1L15.817 24.348l45.835.435L38.502 1z" fill="#fff" />
+          <path d="M15.817 24.348L15.46 24a.5.5 0 00.354.848l.004-.5zM38.502 1l.358-.349-.358-.368-.359.369.359.348zm23.15 23.783l-.005.5a.5.5 0 00.363-.849l-.358.35zm-45.476-.086L38.861 1.348l-.718-.696L15.46 24l.717.697zM38.144 1.349l23.15 23.783.716-.698L38.86.651l-.716.698zm-22.331 23.5l45.834.434.01-1-45.835-.434-.01 1z" fill="#000" />
+          <path d="M38.183 24.494L15.98 47.418M38.734 24.494l22.659 22.85M38.5 1.304V47.577" stroke="#000" stroke-dasharray="4 4" />
+          <path d="M1.216 71.598c0 2.416 1.312 3.728 3.728 3.728 2.24 0 3.44-1.136 3.44-3.232h-.912c0 1.552-.88 2.4-2.528 2.4-1.824 0-2.816-1.024-2.816-2.896v-1.6c0-1.888.992-2.896 2.816-2.896 1.648 0 2.528.832 2.528 2.4h.912c0-2.112-1.2-3.232-3.44-3.232-2.416 0-3.728 1.296-3.728 3.728v1.6zm9.754-5.2v8.8h4.192c1.776 0 2.72-.832 2.72-2.384 0-1.152-.512-1.888-1.488-2.176.656-.336 1.008-.992 1.008-1.936 0-1.504-.88-2.304-2.528-2.304H10.97zm.912 4.72h3.28c1.168 0 1.808.576 1.808 1.632s-.64 1.616-1.808 1.616h-3.28v-3.248zm2.976-3.888c1.056 0 1.632.544 1.632 1.536 0 1.008-.576 1.552-1.632 1.552h-2.976V67.23h2.976zm5.593-.032h3.152v7.2h-3.152v.8h7.088v-.8h-3.008v-8h-4.08v.8zm3.36-2.848c.465 0 .736-.256.736-.752 0-.48-.271-.752-.736-.752-.48 0-.752.272-.752.752 0 .496.272.752.752.752zm6.202 10.848h.912v-1.296l5.312-5.296v6.592h.912v-8.8h-.912v.976l-5.312 5.296v-6.272h-.912v8.8zm1.232-12.048c0 1.504.816 2.32 2.336 2.32 1.536 0 2.352-.816 2.352-2.32h-.784c0 1.056-.544 1.632-1.568 1.632-1.008 0-1.568-.576-1.568-1.632h-.768zm18.212 14.448v-2.4h6.624v2.4h.848v-3.216h-1.024v-7.984h-3.248l-3.024 3.008v4.976h-1.024v3.216h.848zm1.056-3.216v-4.608l2.56-2.576h1.904v7.184h-4.464zm8.314-7.184h3.151v7.2h-3.151v.8h7.088v-.8h-3.009v-8h-4.08v.8zm3.36-2.848c.464 0 .736-.256.736-.752 0-.48-.273-.752-.736-.752-.48 0-.752.272-.752.752 0 .496.271.752.752.752zm6.041 10.848h.912v-6.08l2.64 2.624h.368l2.624-2.624v6.08h.912v-8.8h-.912v1.488l-2.816 2.8-2.816-2.8v-1.488h-.912v8.8z" fill="#fff" />
+        </symbol>
+        <symbol fill="none" viewBox="0 0 77 55" id="app__quote" xmlns="http://www.w3.org/2000/svg">
+          <path d="M50.155 1h17.316L76 9.529v17.23L63.207 52.56l-8.744-17.273h-4.308l-8.529-8.528V9.529L50.157 1z" fill="#fff" />
+          <path d="M50.155 1V.25h-.31l-.22.22.53.53zm17.316 0l.53-.53-.22-.22h-.31V1zM41.626 9.529l-.53-.53-.22.22v.31h.75zm0 17.23h-.75v.31l.22.22.53-.53zm8.53 8.528l-.531.53.22.22h.31v-.75zm17.315 0v.75h.31l.22-.22-.53-.53zM76 26.76l.672.333.078-.158v-.175H76zm0-17.23h.75v-.31l-.22-.22-.53.53zM63.207 52.56l-.67.34.677 1.335.665-1.341-.672-.334zM50.155 1.75h17.316V.25H50.155v1.5zM66.721 1v8.529h1.5V1h-1.5zm.75 7.779H50.155v1.5h17.316v-1.5zm-16.566.75V1h-1.5v8.529h1.5zm-1.28-9.06L41.096 9l1.06 1.06 8.53-8.529L49.625.47zm-8.748 9.06v17.23h1.5V9.529h-1.5zm.22 17.76l8.528 8.529 1.06-1.06-8.528-8.53-1.06 1.061zm9.808 7.998V9.53h-1.5v25.758h1.5zM66.721 9.53v25.758h1.5V9.53h-1.5zm1.28 26.289l8.53-8.529-1.061-1.06-8.53 8.528 1.062 1.06zm8.749-9.06V9.529h-1.5v17.23h1.5zm-.22-17.76L68.002.47 66.94 1.53l8.529 8.53 1.06-1.062zm-1.202 17.428L62.535 52.227l1.344.667 12.793-25.802-1.344-.666zm-25.173 9.611h4.308v-1.5h-4.308v1.5zm4.308 0H67.47v-1.5H54.463v1.5zm9.413 16.185l-8.744-17.273-1.338.677L62.538 52.9l1.338-.677z" fill="#212121" />
+          <path d="M50.242 26.845h17.23M58.857 44.075l4.652-8.788" stroke="#212121" stroke-width="1.5" />
+          <path d="M9.529 1h17.316l8.529 8.529v17.23L22.58 52.56l-8.744-17.273H9.53L1 26.76V9.529L9.529 1z" fill="#fff" />
+          <path d="M9.529 1V.25h-.31l-.22.22.53.53zm17.316 0l.53-.53-.22-.22h-.31V1zM1 9.529l-.53-.53-.22.22v.31H1zm0 17.23H.25v.31l.22.22.53-.53zm8.529 8.528l-.53.53.22.22h.31v-.75zm17.316 0v.75h.31l.22-.22-.53-.53zm8.529-8.528l.671.333.079-.158v-.175h-.75zm0-17.23h.75v-.31l-.22-.22-.53.53zM22.58 52.56l-.669.34.676 1.335.665-1.341-.672-.334zM9.53 1.75h17.316V.25H9.529v1.5zM26.095 1v8.529h1.5V1h-1.5zm.75 7.779H9.529v1.5h17.316v-1.5zm-16.566.75V1h-1.5v8.529h1.5zM8.999.469L.468 9l1.061 1.06 8.53-8.529L8.997.47zM.25 9.53v17.23h1.5V9.529H.25zm.22 17.76l8.528 8.529 1.061-1.06-8.529-8.53L.47 27.29zm9.809 7.998V9.53h-1.5v25.758h1.5zM26.095 9.53v25.758h1.5V9.53h-1.5zm1.28 26.289l8.529-8.529-1.06-1.06-8.53 8.528 1.061 1.06zm8.749-9.06V9.529h-1.5v17.23h1.5zm-.22-17.76L27.375.47l-1.06 1.06 8.528 8.53 1.06-1.062zm-1.202 17.428L21.909 52.227l1.343.667 12.793-25.802-1.343-.666zM9.529 36.037h4.307v-1.5H9.53v1.5zm4.307 0h13.009v-1.5H13.836v1.5zm9.414 16.185l-8.745-17.273-1.338.677L21.911 52.9l1.338-.677z" fill="#212121" />
+          <path d="M9.615 26.845h17.23M18.23 44.075l4.652-8.788" stroke="#212121" stroke-width="1.5" />
+        </symbol>
+        <symbol fill="none" viewBox="0 0 14 8" id="app__select-arrow" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 1l6 6 6-6" stroke="#465558" stroke-linecap="round" stroke-linejoin="round" />
+        </symbol>
+        <symbol fill="none" viewBox="0 0 21 17" id="app__x" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15.75 3.25l-10.5 10.5M5.25 3.25l10.5 10.5" stroke="#465558" stroke-linecap="round" stroke-linejoin="round" />
+        </symbol>
+      </svg>
+      <main class="main">
+        <header class="header">
+          <div class="container">
+            <div class="header__wrapper">
+              <div class="header__burger-mobile">
+                <div class="header-burger">
+                  <img src="static/app/img/burger.png" />
+                </div>
+                <div class="header-mobile-search">
+                  <svg>
+                    <use xlink:href="#app__icon_search"></use>
+                  </svg>
+                </div>
+              </div>
+              <div class="header-logo">
+                <a href="/">
+                  <svg>
+                    <use xlink:href="#app__logo"></use>
+                  </svg>
+                </a>
+                <p>Збираємо свідчення людей, чиї будинки та місця сили знищила росія </p>
+              </div>
+              <div class="header__wrapper-search">
+                <div class="header-social">
+                  <div class="header-social__line"></div>
+                  <a class="header-social__icon" href="#" target="_blank">
+                    <svg>
+                      <use xlink:href="#app__icon-facebook"></use>
+                    </svg>
+                  </a>
+                  <a class="header-social__icon" href="#" target="_blank">
+                    <svg>
+                      <use xlink:href="#app__icon_instagram"></use>
+                    </svg>
+                  </a>
+                  <a class="header-social__icon" href="#" target="_blank">
+                    <svg>
+                      <use xlink:href="#app__icon-tik"></use>
+                    </svg>
+                  </a>
+                  <div class="header-social__line"></div>
+                </div>
+                <div class="header-search">
+                  <svg>
+                    <use xlink:href="#app__icon_search"></use>
+                  </svg>
+                  <input type="search" id="search-main" placeholder="шукати" />
+                  <div class="close-button-search">
+                    <svg>
+                      <use xlink:href="#app__x"></use>
+                    </svg>
+                  </div>
+                </div>
+                <a class="header-profile" href="#">
+                  <svg>
+                    <use xlink:href="#app__icon_profile"></use>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="header-menu">
+              <a href="/" class="active">
+                <h3>головна</h3>
+              </a>
+              <div class="header-dropdown">
+                <h3>історії</h3>
+                <svg>
+                  <use xlink:href="#app__drop-arrow"></use>
+                </svg>
+                <div class="header-dropdown-list no-open">
+                  <a href="/history.html">
+                    <p>всі історії</p>
+                  </a>
+                  <a href="#">
+                    <p>житло</p>
+                  </a>
+                  <a href="#">
+                    <p>історичні будівлі</p>
+                  </a>
+                  <a href="#">
+                    <p>заклади</p>
+                  </a>
+                  <a href="#">
+                    <p>підприємства</p>
+                  </a>
+                </div>
+              </div>
+              <a href="/rebuild.html">
+                <h3>відбудовано</h3>
+              </a>
+              <a href="/help.html">
+                <h3>допомога</h3>
+              </a>
+              <a href="/base-damages.html">
+                <h3>база зруйнованого</h3>
+              </a>
+              <a href="#">
+                <h3>карта</h3>
+              </a>
+            </div>
+            <div class="header-menu-mobile">
+              <div class="header-menu-mobile__wrapper">
+                <div class="close-mobile-burger">
+                  <svg>
+                    <use xlink:href="#app__x"></use>
+                  </svg>
+                </div>
+                <a href="#" class="active">
+                  <h2>головна</h2>
+                </a>
+                <div class="header-menu-mobile__wrapper-dropdown">
+                  <h2>історії</h2>
+                  <div class="header-menu-mobile__wrapper-dropdown-list">
+                    <a href="/history.html">
+                      <h3>всі історії</h3>
+                    </a>
+                    <a href="#">
+                      <h3>житло</h3>
+                    </a>
+                    <a href="#">
+                      <h3>історичні будівлі</h3>
+                    </a>
+                    <a href="#">
+                      <h3>заклади</h3>
+                    </a>
+                    <a href="#">
+                      <h3>підприємства</h3>
+                    </a>
+                  </div>
+                </div>
+                <a href="/rebuild.html">
+                  <h2>відбудовано</h2>
+                </a>
+                <a href="/help.html">
+                  <h2>допомога</h2>
+                </a>
+                <a href="/base-damages.html">
+                  <h2>база зруйнованого</h2>
+                </a>
+                <a href="#">
+                  <h2>карта</h2>
+                </a>
+                <div class="mobile-social">
+                  <a class="header-social__icon" href="#" target="_blank">
+                    <svg>
+                      <use xlink:href="#app__icon-facebook"></use>
+                    </svg>
+                  </a>
+                  <a class="header-social__icon" href="#" target="_blank">
+                    <svg>
+                      <use xlink:href="#app__icon_instagram"></use>
+                    </svg>
+                  </a>
+                  <a class="header-social__icon" href="#" target="_blank">
+                    <svg>
+                      <use xlink:href="#app__icon-tik"></use>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </header>
+        <section class="base-damages-one-post">
+          <div class="container">
+            <div class="base-damages-header">
+              <div class="base-damages-header__wrapper">
+                <h2 class="desc">База пошкодженого та знищеного внаслідок бойових дій майна</h2>
+                <h2 class="mobile">база зруйнованого</h2>
+                <div class="navigator">
+                  <h5>головна / база зруйнованого / Сєвєродонецьк</h5>
+                </div>
+              </div>
+              <h4>Тут ви можете знайти інформацію, фото та відео зруйнованих повністю або частково житла, підприємств, закладів, об’єктів інфраструктури</h4>
+            </div>
+            <div class="base-damages-one-post__main">
+              <div class="base-damages-one-post__img">
+                <div class="base-damages-slider swiper">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                      <img src="static/app/img/photo.png" />
+                    </div>
+                    <div class="swiper-slide">
+                      <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
+                    </div>
+                    <div class="swiper-slide">
+                      <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
+                    </div>
+                    <div class="swiper-slide">
+                      <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
+                    </div>
+                    <div class="swiper-slide">
+                      <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
+                    </div>
+                    <div class="swiper-slide">
+                      <img src="https://swiperjs.com/demos/images/nature-6.jpg" />
+                    </div>
+                    <div class="swiper-slide">
+                      <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
+                    </div>
+                    <div class="swiper-slide">
+                      <img src="https://swiperjs.com/demos/images/nature-8.jpg" />
+                    </div>
+                    <div class="swiper-slide">
+                      <img src="https://swiperjs.com/demos/images/nature-9.jpg" />
+                    </div>
+                    <div class="swiper-slide">
+                      <img src="https://swiperjs.com/demos/images/nature-10.jpg" />
+                    </div>
+                  </div>
+                  <div class="swiper-button-prev-damages1">
+                    <svg>
+                      <use xlink:href="#app__arrow-slider-main"></use>
+                    </svg>
+                  </div>
+                  <div class="swiper-button-next-damages1">
+                    <svg>
+                      <use xlink:href="#app__arrow-slider-main"></use>
+                    </svg>
+                  </div>
+                </div>
+                <div thumbsSlider="" class="swiper base-damages-gallery">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                      <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
+                    </div>
+                    <div class="swiper-slide">
+                      <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
+                    </div>
+                    <div class="swiper-slide">
+                      <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
+                    </div>
+                    <div class="swiper-slide">
+                      <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
+                    </div>
+                    <div class="swiper-slide">
+                      <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
+                    </div>
+                    <div class="swiper-slide">
+                      <img src="https://swiperjs.com/demos/images/nature-6.jpg" />
+                    </div>
+                    <div class="swiper-slide">
+                      <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
+                    </div>
+                    <div class="swiper-slide">
+                      <img src="https://swiperjs.com/demos/images/nature-8.jpg" />
+                    </div>
+                    <div class="swiper-slide">
+                      <img src="https://swiperjs.com/demos/images/nature-9.jpg" />
+                    </div>
+                    <div class="swiper-slide">
+                      <img src="https://swiperjs.com/demos/images/nature-10.jpg" />
+                    </div>
+                  </div>
+                  <div class="swiper-button-prev-gallery">
+                    <svg>
+                      <use xlink:href="#app__arrow-slider-main"></use>
+                    </svg>
+                  </div>
+                  <div class="swiper-button-next-gallery">
+                    <svg>
+                      <use xlink:href="#app__arrow-slider-main"></use>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <div class="base-damages-card">
+                <div class="base-damages-card__wrapper">
+                  <div class="card-title">
+                    <div class="icon">
+                      <img src="static/app/img/icon-home.svg" />
+                    </div>
+                    <p>багатоповерховий будинок</p>
+                    <h2>9-поверховий будинок у Сєвєродонецьку</h2>
+                  </div>
+                  <div class="card-info">
+                    <div class="card-info__wrapper">
+                      <h4>Дата руйнування: </h4>
+                      <p>червень 2022</p>
+                      <h4>Дата додавання до бази:</h4>
+                      <p>21 листопада 2022</p>
+                    </div>
+                    <div class="card-info__line"></div>
+                    <div class="card-info__wrapper">
+                      <h4>Адреса:</h4>
+                      <p>Луганська область, Сєвєродонецький район, м. Сєвєродонецьк</p>
+                      <p>вул. Партизанська, 43</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="slider-history1 swiper" id="slider-history">
+                <div class=" slider-history__wrapper swiper-wrapper">
+                  <!--                     list-cards-->
+                  <div class="slider-history__slide swiper-slide ">
+                    <a href="#" class="list-cards__card ">
+                      <div class="card-img">
+                        <img src="static/app/img/history-photo.png" />
+                      </div>
+                    </a>
+                  </div>
+                  <div class="slider-history__slide swiper-slide ">
+                    <a href="#" class="list-cards__card ">
+                      <div class="card-img">
+                        <img src="static/app/img/history-photo.png" />
+                      </div>
+                    </a>
+                  </div>
+                  <div class="slider-history__slide swiper-slide ">
+                    <a href="#" class="list-cards__card ">
+                      <div class="card-img">
+                        <img src="static/app/img/history-photo.png" />
+                      </div>
+                    </a>
+                  </div>
+                  <div class="slider-history__slide swiper-slide ">
+                    <a href="#" class="list-cards__card ">
+                      <div class="card-img">
+                        <img src="static/app/img/history-photo.png" />
+                      </div>
+                    </a>
+                  </div>
+                </div>
+                <div class="swiper-button-prev-main-mobile">
+                  <svg>
+                    <use xlink:href="#app__arrow-slider-main"></use>
+                  </svg>
+                </div>
+                <div class="swiper-button-next-main-mobile">
+                  <svg>
+                    <use xlink:href="#app__arrow-slider-main"></use>
+                  </svg>
+                </div>
+                <div class="swiper-pagination slider-history__swiper-pagination "></div>
+              </div>
+              <div class="article-info">
+                <div class="card-info">
+                  <div class="icon">
+                    <img src="static/app/img/icon-home.svg" />
+                  </div>
+                  <p>багатоповерховий будинок</p>
+                </div>
+                <h2>9-поверховий будинок у Сєвєродонецьку</h2>
+                <h4>Дата руйнування: </h4>
+                <p>червень 2022</p>
+                <h4>Дата додавання до бази:</h4>
+                <p>21 листопада 2022</p>
+                <div class="line"></div>
+                <h4>Адреса:</h4>
+                <p>Луганська область,<br> Сєвєродонецький район,<br> м. Сєвєродонецьк</p>
+                <p>вул. Партизанська, 43</p>
+              </div>
+            </div>
+            <div class="base-damages_info">
+              <div class="base-damages_info__video">
+                <h3>Детальна інформація</h3>
+                <p>Запускаємо медіа на власній платформі The Citу. Продюсуємо спецпроекти. Знімаємо, дизайнимо і творимо іншу магію для громадських організацій, бізнесу та медіа. Запускаємо медіа на власній платформі The Citу. Продюсуємо спецпроекти. Знімаємо, дизайнимо і творимо іншу магію для громадських організацій, бізнесу та медіа. Запускаємо медіа на власній платформі The Citу. Продюсуємо спецпроекти. Знімаємо, дизайнимо і творимо іншу магію для громадських організацій, бізнесу та медіа. Запускаємо медіа на власній платформі The Citу. Продюсуємо спецпроекти. </p>
+                <div class="video-post">
+                  <iframe width="560" height="315" src="https://www.youtube.com/embed/OMpo976NI2Q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+                <p>Запускаємо медіа на власній платформі The Citу. Продюсуємо спецпроекти. Знімаємо, дизайнимо і творимо іншу магію для громадських організацій, бізнесу та медіа. Запускаємо медіа на власній платформі The Citу. Продюсуємо спецпроекти. Знімаємо, дизайнимо і творимо іншу магію для громадських організацій, бізнесу та медіа. Запускаємо медіа на власній платформі The Citу. </p>
+                <div class="video-post">
+                  <iframe width="560" height="315" src="https://www.youtube.com/embed/OMpo976NI2Q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+              </div>
+              <div class="base-damages_info__history">
+                <h3>Пов’язані історії</h3>
+                <div class="another-history">
+                  <a href="#" class="list-cards__card">
+                    <div class="card-img">
+                      <img src="static/app/img/history-photo.png" />
+                    </div>
+                    <div class="card-info">
+                      <div class="icon">
+                        <img src="static/app/img/icon-home.svg" />
+                      </div>
+                      <p>комунальна інфраструктура</p>
+                      <h3>Історичний будинок з годинником у центрі Маріуполя</h3>
+                    </div>
+                  </a>
+                  <a href="#" class="list-cards__card">
+                    <div class="card-img">
+                      <img src="static/app/img/history-photo.png" />
+                    </div>
+                    <div class="card-info">
+                      <div class="icon">
+                        <img src="static/app/img/icon-home.svg" />
+                      </div>
+                      <p>комунальна інфраструктура</p>
+                      <h3>Історичний будинок з годинником у центрі Маріуполя</h3>
+                    </div>
+                  </a>
+                  <a href="#" class="list-cards__card">
+                    <div class="card-img">
+                      <img src="static/app/img/history-photo.png" />
+                    </div>
+                    <div class="card-info">
+                      <div class="icon">
+                        <img src="static/app/img/icon-home.svg" />
+                      </div>
+                      <p>комунальна інфраструктура</p>
+                      <h3>Історичний будинок з годинником у центрі Маріуполя</h3>
+                    </div>
+                  </a>
+                  <a href="#" class="list-cards__card">
+                    <div class="card-img">
+                      <img src="static/app/img/history-photo.png" />
+                    </div>
+                    <div class="card-info">
+                      <div class="icon">
+                        <img src="static/app/img/icon-home.svg" />
+                      </div>
+                      <p>комунальна інфраструктура</p>
+                      <h3>Історичний будинок з годинником у центрі Маріуполя</h3>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="main-history" style="background: #F1F3F4">
+          <div class="container">
+            <div class="main-history__wrapper">
+              <div class="history-title">
+                <h3>Інші об’єкти у м. Сєвєродонецьк</h3>
+              </div>
+              <div class="slider-history swiper slider-3 last-add-wrapper-swiper" id="slider-3">
+                <div class=" slider-history__wrapper swiper-wrapper last-add-wrapper">
+                  <div class="slider-history__slide swiper-slide ">
+                    <a href="/article.html" class="list-cards__card ">
+                      <div class="card-img">
+                        <img src="static/app/img/history-photo.png" />
+                      </div>
+                      <div class="card-info">
+                        <div class="icon">
+                          <img src="static/app/img/icon-home.svg" />
+                        </div>
+                        <p>багатоповерховий будинок</p>
+                        <h3>Історія сім’ї Альони Єськової, яка втратила будинок </h3>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="slider-history__slide swiper-slide ">
+                    <a href="/article.html" class="list-cards__card ">
+                      <div class="card-img">
+                        <img src="static/app/img/history-photo.png" />
+                      </div>
+                      <div class="card-info">
+                        <div class="icon">
+                          <img src="static/app/img/icon-home.svg" />
+                        </div>
+                        <p>багатоповерховий будинок</p>
+                        <h3>Історія сім’ї Альони Єськової, яка втратила будинок </h3>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="slider-history__slide swiper-slide ">
+                    <a href="/article.html" class="list-cards__card ">
+                      <div class="card-img">
+                        <img src="static/app/img/history-photo.png" />
+                      </div>
+                      <div class="card-info">
+                        <div class="icon">
+                          <img src="static/app/img/icon-home.svg" />
+                        </div>
+                        <p>багатоповерховий будинок</p>
+                        <h3>Історія сім’ї Альони Єськової, яка втратила будинок </h3>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="slider-history__slide swiper-slide ">
+                    <a href="/article.html" class="list-cards__card ">
+                      <div class="card-img">
+                        <img src="static/app/img/history-photo.png" />
+                      </div>
+                      <div class="card-info">
+                        <div class="icon">
+                          <img src="static/app/img/icon-home.svg" />
+                        </div>
+                        <p>багатоповерховий будинок</p>
+                        <h3>Історія сім’ї Альони Єськової, яка втратила будинок </h3>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+                <div class="swiper-pagination slider-3__swiper-pagination"></div>
+              </div>
+              <div class="history-button">
+                <a href="#" class="button-secondary">
+                  <p class="text-button-bold">показати ще</p>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+        <footer class="footer">
+          <div class="container">
+            <div class="footer__wrapper">
+              <div class="footer-logo">
+                <a href="#">
+                  <svg>
+                    <use xlink:href="#app__logo-footer"></use>
+                  </svg>
+                </a>
+              </div>
+              <div class="footer-info">
+                <a href="#">
+                  <p>Про нас</p>
+                </a>
+                <a href="/contacts.html">
+                  <p>Контакти</p>
+                </a>
+                <a href="/questions.html">
+                  <p>Часті питання</p>
+                </a>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </main>
+    </div>
+    <script src="./scripts/jquery-3.6.0.min.js"></script>
+    <script src="./scripts/swiper.min.js"></script>
+    <script src="./scripts/jquery.fancybox.min.js"></script>
+    <script src="./scripts/jquery-ui.min.js"></script>
+    <script src="./scripts/datepicker_uk.js"></script>
+    <script src="./scripts/app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  </body>
+</html>
